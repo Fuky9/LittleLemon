@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'restaurant',
     'rest_framework',
+    'rest_framework.authtoken',
+    'djoser',
 ]
 
 MIDDLEWARE = [
@@ -131,3 +133,31 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': ( # order defines priority (first = highest priority)
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ),
+    'DEFAULT_FILTER_BACKENDS': [
+        'django_filters.rest_framework.DjangoFilterBackend', # django-filter module must be installed! (pipenv install django-filter)
+        'rest_framework.filters.OrderingFilter',
+        'rest_framework.filters.SearchFilter',
+    ], # used for class-based filtering, ordering and searching
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE':3, # used for class-based view pagination
+    'DEFAULT_THROTTLE_RATES': {
+        'anon':'10/minute', # anonymous users allowed 20 requests per day
+        'user': '20/minute', # authenticated users allowed 5 requests per minute
+        # can also use: hour, second instead of minute,
+
+    },
+    'DEFAULT_THROTTLE_CLASSES': [
+        'rest_framework.throttling.AnonRateThrottle', 'rest_framework.throttling.UserRateThrottle'
+],
+}
+
+DJOSER = {
+    'USER_ID_FIELD': 'username',
+    'USER_CREATE_PASSWORD_RETYPE': True,
+}

@@ -145,7 +145,7 @@ REST_FRAMEWORK = {
         'rest_framework.filters.SearchFilter',
     ], # used for class-based filtering, ordering and searching
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    'PAGE_SIZE':3, # used for class-based view pagination
+    'PAGE_SIZE':10, # used for class-based view pagination
     'DEFAULT_THROTTLE_RATES': {
         'anon':'10/minute', # anonymous users allowed 20 requests per day
         'user': '20/minute', # authenticated users allowed 5 requests per minute

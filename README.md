@@ -1,2 +1,2 @@
 # LittleLemon
-Capstone project from Meta Back-end developer professional certificate. Creating a restaurant web application with Django including booking table and menu APIs built by DRF. MySQL is used as a database in this project.
+Capstone project from Meta Back-end developer professional certificate. Creating a back-end restaurant web application with Django including booking table and menu APIs built by DRF. MySQL is used as a database in this project. There are several unit tests for models and views. Basic ones were part of the project instructions, I made a few more complex ones for practice. Project contains some unnecessary comments, becaue I use it as study material.
